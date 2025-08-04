@@ -5,10 +5,12 @@ import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Chats from "./pages/Chats"
 import NotFound from "./pages/NotFound"
+import { UserContext } from "./context/AuthContext"
 
 
 
 function App() {
+  console.log(UserContext()?.isLoggedIn)
   return (
     <>
       <main>
