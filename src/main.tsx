@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext.tsx'
 import axios from 'axios'
 axios.defaults.baseURL = "http://localhost:8000/app/v1/"
+axios.defaults.withCredentials = true
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

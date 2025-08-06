@@ -1,4 +1,5 @@
 import { Children, createContext, useActionState, useContext, useEffect, useState, type ReactNode } from 'react'
+import { loginUser } from '../helper/api';
 type User = {
     email: string;
     password: string;
@@ -20,7 +21,14 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         //if user have cookies then skip login 
     }, [])
 
-    const login = async (email: string, password: string) => { }
+    const login = async (email: string, password: string) => {
+        const data = await loginUser(email, password)
+        if (data) {
+            setUser(data)
+            setIsloggedIn(true)
+        }
+        console.log(data)
+    }
     const signup = async (name: string, email: string, password: string) => { }
     const logout = async () => { }
     const value = {

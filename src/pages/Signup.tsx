@@ -79,6 +79,7 @@ const Signup = () => {
                             <button
                                 type='submit'
                                 className="mt-4 w-75 rounded cursor-pointer bg-yellow-600 hover:bg-yellow-800 text-white font-semibold py-2 mt-6 shadow transition duration-200 ease-in-out"
+                                style={{ backgroundColor: "#0a6bb4" }}
                             >
                                 Signup
                             </button>

@@ -1,12 +1,20 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/AuthContext'
+import Swal from 'sweetalert2'
 
 const Login = () => {
+    const auth = UserContext()
     const navigation = useNavigate()
-    const handleSubmit = (formData: any) => {
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
+    const handleSubmit = async (formData: any) => {
+        const email = formData.get("email")
+        const password = formData.get("password")
+        try {
+            await auth?.login(email, password)
+            navigation("/")
+        } catch (error) {
+            Swal.fire('Login Failed', 'Please check your credentials.', 'error')
         }
+        console.log(email, password)
     }
     return (
         <div className='flex flex-col justify-center items-center '
@@ -63,15 +71,15 @@ const Login = () => {
 
                             </div>
                             <button
-                                className="mt-4 w-75 rounded cursor-pointer bg-yellow-600 hover:bg-yellow-800 text-white font-semibold py-2 mt-6 shadow transition duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+                                className="mt-4 w-75 rounded cursor-pointer text-white font-semibold py-2 mt-6   duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2"
+                                style={{ backgroundColor: "#0a6bb4" }}
                             >
                                 Login
                             </button>
                             <div
                                 onClick={() => navigation("/signup")}
-                                className="underline flex items-center gap-1 cursor-pointer text-yellow-400 hover:text-yellow-600 mt-4"
+                                className="underline flex items-center gap-1 cursor-pointer text-blue-300 hover:text-blue-500 mt-4"
                             >
-
                                 Go to signup
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
